@@ -17,3 +17,31 @@
   22 clear
   23 git pull --rebase origin main
   24 git push -u origin main
+    21 git remote -v
+  22 clear
+  23 git pull --rebase origin main
+  24 git push -u origin main
+  25 history
+  26 git add .;git commit -m "Committed";git push origin main;
+  27 git branch
+  28 git branch services
+  29 git branch
+  30 git checkout services
+  31 git log
+  32 git status
+  33 git add .
+  34 git coomit -m "Service html Page created"
+  35 git checkout main
+  36 git checkout services
+  37 git commit -m "Created Service html page"
+  38 git log --oneline
+  39 git checkout main
+  40 git log --oneline
+  41 git branch Test
+  42 git branch
+  43 git checkout Test
+  44 git log --oneline
+  45 git branch
+  46 git checkout services
+  47 git push origin services
+  48 git history
