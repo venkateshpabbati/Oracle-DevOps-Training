@@ -4,3 +4,16 @@
    8 git commit -m "Index Page "
    9 git log
   10 git show 921b0f54
+
+  13 git remote add origin https://github.com/Msocial123/Oracle-Training-Retail.git
+  14 git remote -v
+  15 git pull
+  16 git pull origin main
+  17 git push -u origin main
+  18 git pull origin main
+  19 git pull
+  20 git log
+  21 git remote -v
+  22 clear
+  23 git pull --rebase origin main
+  24 git push -u origin main
