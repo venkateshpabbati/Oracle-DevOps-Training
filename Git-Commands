@@ -1,0 +1,6 @@
+   5 git status
+   6 git add .
+   7 git status
+   8 git commit -m "Index Page "
+   9 git log
+  10 git show 921b0f54
