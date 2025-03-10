@@ -1,0 +1,23 @@
+ 1  yum update -y
+    2  sudo wget -O /etc/yum.repos.d/jenkins.repo     https://pkg.jenkins.io/redhat-stable/jenkins.repo
+    3  sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+    4  rm -rf /etc/yum.repos.d/jenkins.repo
+    5  clear
+    6  sudo dnf install -y java-17-openjdk
+    7  java -version
+    8  sudo dnf install -y wget
+    9  sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+   10  sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+   11  sudo dnf install -y jenkins
+   12  sudo systemctl enable jenkins
+   13  sudo systemctl start jenkins
+   14  sudo systemctl status jenkins
+   16  sudo netstat -tulnp | grep 8080
+   17  sudo nano /etc/sysconfig/jenkins
+   18  cd /etc/sysconfig
+   19  ls
+   20  sudo firewall-cmd --list-ports
+   21  sudo firewall-cmd --permanent --add-port=8080/tcp
+   22  sudo firewall-cmd --reload
+   23  sudo firewall-cmd --list-ports
+   24  sestatus
