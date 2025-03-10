@@ -45,3 +45,17 @@
   46 git checkout services
   47 git push origin services
   48 git history
+  49 history
+  50 git push origin Test
+  51 git pull
+  52 git main
+  53 git checkout main
+  54 git pull origin main
+  55 clear
+  56 git branch
+  57 git add .;git commit -m "Changes are committed"
+  58 git checkout services
+  59 git add .;git commit -m "Changes are committed"
+  60 git checkout main
+  61 git merge services
+  62 git add . ; git commit -m "Merge Completed"
