@@ -59,3 +59,17 @@
   60 git checkout main
   61 git merge services
   62 git add . ; git commit -m "Merge Completed"
+  62 git add . ; git commit -m "Merge Completed"
+  63 history
+  64 git branch
+  65 git rebase Test
+  66 git add .
+  67 git commit -m "Committed "
+  68 git rebase --continue
+  69 git checkout services
+  70 git log --oneline
+  71 git checkout main
+  72 git rebase services
+  73 git add .
+  74 git commit -m "Commit "
+  75 git rebase --continue
