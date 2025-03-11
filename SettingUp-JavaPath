@@ -2,6 +2,13 @@
 https://cloudsbaba.com/jenkins-installation-and-configuration-on-aws-ec2-instance/
 https://medium.com/@sugam.arora23/installing-and-configuring-sonarqube-on-aws-ec2-a-step-by-step-guide-defd8955eb30
 
+To check the Java Versions of Multiple Packages :
+ sudo update-alternatives --config java
+
+ Install JDK 17 :
+
+ sudo yum -y install java-11-openjdk
+
 step1:- Install Java and setting Java Path
 
 sudo dnf install java-17-amazon-corretto -y  ## sudo yum install java-11-amazon-corretto
