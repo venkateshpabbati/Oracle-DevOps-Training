@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  user: ansible
+  become: yes 
+  connection: ssh 
+  tasks:
+    - name: Install git on the webservers
+      action: yum pkg=git state=present 
+    - name: Install docker on the webservers 
+      action: yum pkg=docker state=present 
+    - name: Start Docker Server on the webservers
+      action: service name=podman state=started 
+    - name: Stop Docker Server on the webservers
+      action: service name=podman state=stopped 
+    - name: Restart Docker Server on the Host machines 
+      action: service name=podman state=restarted   
+

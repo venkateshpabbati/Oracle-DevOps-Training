@@ -1,0 +1,55 @@
+---
+- name: Install SonarQube Server 
+  hosts: webservers
+  become: yes 
+  connection: ssh 
+  vars:
+    sonar_version: "10.3.0.82913"
+    sonar_user: "sonarqube"
+    sonar_group: "sonarqube"
+    sonar_home: "/opt/sonarqube"
+    sonar_service: "/etc/systemd/system/sonarqube.service"
+  tasks:
+    - name: Install required packages 
+      yum:
+        name: 
+          - java-11-openjdk
+          - java-11-openjdk-devel 
+          - unzip 
+          - wget 
+          - curl 
+        state: present
+    - name: Create a SonarQube Group 
+      group:
+        name: "{{sonar_group}}"   
+        state: present
+    - name: Create a SonarQube User 
+      user:
+        name: "{{sonar_user}}"
+        group: "{{sonar_group}}"
+        shell: /bin/bash 
+        home: "{{sonar_home}}"
+        createhome: no 
+    - name: Download SonarQube Server 
+      get_url: 
+        url: "https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{sonar_version}}.zip" 
+        dest: "/tmp/sonarqube.zip"  
+    - name: Extract SonarQube 
+      unarchive:
+        src: "/tmp/sonarqube.zip" 
+        dest: "/opt" 
+        remote_src: yes 
+        owner: "{{sonar_user}}"
+        group: "{{sonar_group}}"
+      register: extract_results
+    - name: SonarQube Folder 
+      shell: "ls -d /opt/sonarqube-* | head -n 1"   
+      register: sonar_folder
+      changed_when: false
+    - name: Rename the directory
+      command: mv "{{sonar_folder.stdout}}" /opt/sonarqube 
+      args:
+        creates: "/opt/sonarqube/conf/sonar.properties"
+      when: sonar_folder.stdout | length > 0
+
+

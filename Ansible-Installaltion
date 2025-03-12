@@ -1,0 +1,14 @@
+sudo dnf install -y oracle-epel-release-el8
+sudo dnf install -y ansible
+ansible --version
+
+Step1 : Create a User Account - adduser ansible 
+step2 : passwd ansible 
+Step3 : visudo - press i - under root add this - ansible ALL=(ALL) NOPASSWD: ALL
+Step4: Connection to Ansible Server to Host Machine - vi /etc/ssh/sshd_config 
+service sshd restart
+Step5: Generate the Public and Private KeyPairs - Copy into host1 machine - Execute only in Ansible Server 
+
+Step6 : vi /etc/ansible/ansible.cfg - Remove the hash - inventory , Sudo User 
+Step7: vi /etc/ansible/hosts - under webserver - Add your host Machine IP Address - Private IP  
+Step8: Check the SetUP - ansible webservers --list-hosts

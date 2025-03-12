@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'MAVEN_HOME'  // Ensures Jenkins uses the configured Maven tool
+    }
+
+    environment {
+        TOMCAT_URL = "http://129.80.248.251:8080"
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    echo "Cloning repository..."
+                    git 'https://github.com/Msocial123/maven-web-application.git'
+                }
+            }
+        }
+
+        stage('Build with Maven') {
+            steps {
+                script {
+                    echo "Building the application..."
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                script {
+                    echo "Deploying to Tomcat..."
+                    
+                    withCredentials([usernamePassword(credentialsId: 'Tomcat_Credencials', usernameVariable: 'TOMCAT_USER', passwordVariable: 'TOMCAT_PASS')]) {
+                        sh """
+                            curl -v --user $TOMCAT_USER:$TOMCAT_PASS --upload-file target/maven-web-application.war \\
+                            $TOMCAT_URL/manager/text/deploy?path=/maven-web-application&update=true
+                        """
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployment successful!"
+        }
+        failure {
+            echo "Deployment failed!"
+        }
+    }
+}
