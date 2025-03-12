@@ -8,3 +8,19 @@
    19  ansible webservers -b -a "service httpd start"
    20  ansible webservers -b -a "service httpd restart"
    21  ansible webservers -b -a "service httpd stop"
+Single Module Commands:
+
+ansible webservers -b -m yum -a "pkg=java state=present"
+------
+
+23  ansible webservers -b -m yum -a "pkg=java state=present"
+   24  ansible webservers -b -a "java --version"
+   25  ansible webservers -b -m yum -a "name=httpd state=absent"
+   26  ansible webservers -b -m yum -a "pkg=maven state=latest"
+   27  ansible webservers -b -a "mvn --version"
+   28  ansible webservers -b -m yum -a "name=java state=absent"
+   29  ansible webservers -b -m yum -a "pkg=java-1.8.0-openjdk-devel state=present"
+   30  ansible webservers -b -a "java --version"
+   31*
+   32*
+   33  ansible webservers -b -m yum -a "pkg=python3 state=present"
