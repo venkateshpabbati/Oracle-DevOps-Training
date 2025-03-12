@@ -11,12 +11,13 @@
     sonar_service: "/etc/systemd/system/sonarqube.service"
   tasks:
     - name: Install required packages 
-      yum: 
-        - java-11-openjdk
-        - java-11-openjdk-devel 
-        - unzip 
-        - wget 
-        - curl 
+      yum:
+        name: 
+          - java-11-openjdk
+          - java-11-openjdk-devel 
+          - unzip 
+          - wget 
+          - curl 
       state: present
     - name: Create a SonarQube Group 
       group:
