@@ -47,7 +47,7 @@
       register: sonar_folder
       changed_when: false
     - name: Rename the directory
-      command: mv "{{ sonar_folder.stdout }}" /opt/sonarqube 
+      command: mv "{{sonar_folder.stdout}}" /opt/sonarqube 
       args:
         creates: "/opt/sonarqube/conf/sonar.properties"
         when: sonar_folder.stdout | length > 0
