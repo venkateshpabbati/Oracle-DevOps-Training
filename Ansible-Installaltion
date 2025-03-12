@@ -1,3 +1,7 @@
 sudo dnf install -y oracle-epel-release-el8
 sudo dnf install -y ansible
 ansible --version
+
+Step1 : Create a User Account - adduser ansible 
+step2 : passwd ansible 
+Step3 : visudo 
