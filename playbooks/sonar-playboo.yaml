@@ -50,6 +50,6 @@
       command: mv "{{sonar_folder.stdout}}" /opt/sonarqube 
       args:
         creates: "/opt/sonarqube/conf/sonar.properties"
-        when: sonar_folder.stdout | length > 0
+      when: sonar_folder.stdout | length > 0
 
 
