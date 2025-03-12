@@ -1,0 +1,3 @@
+sudo dnf install -y oracle-epel-release-el8
+sudo dnf install -y ansible
+ansible --version
