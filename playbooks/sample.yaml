@@ -9,9 +9,9 @@
     - name: Install docker on the webservers 
       action: yum pkg=docker state=present 
     - name: Start Docker Server on the webservers
-      action: service name=docker state=started 
+      action: service name=podman state=started 
     - name: Stop Docker Server on the webservers
-      action: service name=docker state=stopped 
+      action: service name=podman state=stopped 
     - name: Restart Docker Server on the Host machines 
-      action: service name=docker state=restarted   
+      action: service name=podman state=restarted   
 
