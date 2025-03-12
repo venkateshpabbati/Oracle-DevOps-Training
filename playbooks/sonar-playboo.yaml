@@ -41,7 +41,11 @@
         remote_src: yes 
         owner: "{{sonar_user}}"
         group: "{{sonar_group}}"
-      register: extract_results 
+      register: extract_results
+    - name: SonarQube Folder 
+      shell: "ls -d /opt/sonarqube-* | head -n 1"   
+      register: sonar_folder
+      changed_when: false
     - name: Rename the directory
       command: mv "{{ sonar_folder.stdout }}" /opt/sonarqube 
       args:
