@@ -4,4 +4,4 @@ ansible --version
 
 Step1 : Create a User Account - adduser ansible 
 step2 : passwd ansible 
-Step3 : visudo 
+Step3 : visudo - press i - under root add this - ansible ALL=(ALL) NOPASSWD: ALL
