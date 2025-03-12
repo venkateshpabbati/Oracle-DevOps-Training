@@ -1,0 +1,46 @@
+- hosts: webservers
+  user: ansible
+  become: true
+  connection: ssh
+  tasks:
+  - name: Install OpenJdk
+    yum:
+      name: java-1.8.0-openjdk-devel
+      state: present
+  - name: Download Jenkins repo
+    get_url:
+      url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+      dest: /etc/yum.repos.d/jenkins.repo
+  - name: Import rpm key
+    rpm_key:
+      state: present
+      key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+  - name: Install Epel release
+    yum:
+      name: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      state: present
+      disable_gpg_check: true
+  - name: Install Jenkins
+    yum:
+      name: jenkins
+      state: present
+  - name: Strart Jenkins
+    service:
+      name: jenkins
+      state: started
+ - name: Enable Jenkins On Boot Starp
+    systemd:
+      name: jenkins
+      enabled: true
+  - name: Sleep for 30 seconds or wait for port 8080 to be listning
+    wait_for:
+      delay: 30
+      port: 8080
+  - name: Get init admin password
+    shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+    register: jenkinspass
+  - name: Print jenkins password
+    debug:
+      var: jenkinspass.stdout
+
+
